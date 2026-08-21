@@ -30,11 +30,12 @@ const App = () => {
         <h3>{value}</h3>
         <ul data-test-id={`stage-${index}`}>
           {stagesTasks[index].map((task) => (
-            <li key={`${value}-${index}`}>
+            <li key={`${value}-${index}`} className="task-item">
+              <button type="button" onClick={() => onRetreat(task)}>&larr;</button>
               <span>
                 {task.name}
               </span>
-              <button type="button" onClick={() => onAdvance(task)}>`&gt;`</button>
+              <button type="button" onClick={() => onAdvance(task)}>&rarr;</button>
               <button type="button" onClick={() => onDelete(task.name)}>X</button>
             </li>
           ))}
@@ -43,7 +44,6 @@ const App = () => {
     ))
   }
 
-  // create task
   const onCreate = () => {
     console.log(newTaskName)
     const newTask = {name: newTaskName, stage: 0}
@@ -51,22 +51,26 @@ const App = () => {
     setNewTaskName('')
   }
 
-  // delete task
   const onDelete = (value) => {
     const foundIndex = tasks.filter((t, index) => t.name !== value)
     setTasks(foundIndex)
   }
 
-  // advance task
-const onAdvance = (task) => {
-  // advance task by changing the stage of the task
-  if (task.stage < 3) {
-    setTasks(tasks.map(t =>
-      t.name === task.name ? {...t, stage: t.stage + 1} : t
-    ));
+  const onAdvance = (task) => {
+    if (task.stage < 3) {
+      setTasks(tasks.map(t =>
+        t.name === task.name ? {...t, stage: t.stage + 1} : t
+      ));
+    }
   }
-}
 
+  const onRetreat = (task) => {
+    if (task.stage > 0) {
+      setTasks(tasks.map(t =>
+        t.name === task.name ? {...t, stage: t.stage - 1} : t
+      ));
+    }
+  }
 
   return (
     <>
