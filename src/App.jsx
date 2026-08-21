@@ -24,7 +24,6 @@ const App = () => {
   }
 
   const stageComponents = () => {
-    console.log('Tasks', tasks)
     return stagesNames.map((value, index) => (
       <div key={index}>
         <h3>{value}</h3>
@@ -45,7 +44,6 @@ const App = () => {
   }
 
   const onCreate = () => {
-    console.log(newTaskName)
     const newTask = {name: newTaskName, stage: 0}
     setTasks([...tasks, newTask])
     setNewTaskName('')
