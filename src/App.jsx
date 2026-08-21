@@ -29,7 +29,7 @@ const App = () => {
         <h3>{value}</h3>
         <ul data-test-id={`stage-${index}`}>
           {stagesTasks[index].map((task) => (
-            <li key={`${value}-${index}`} className="task-item">
+            <li key={`${task}-${index}`} className="task-item">
               <button type="button" onClick={() => onRetreat(task)}>&larr;</button>
               <span>
                 {task.name}
