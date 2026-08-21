@@ -46,16 +46,15 @@ const App = () => {
   // create task
   const onCreate = () => {
     console.log(newTaskName)
-    const newTask = {name: newTaskName, stage: 1}
+    const newTask = {name: newTaskName, stage: 0}
     setTasks([...tasks, newTask])
     setNewTaskName('')
   }
 
   // delete task
   const onDelete = (value) => {
-    console.log(value)
-    // filter out for specific task so they don't all get deleted
-    setTasks( tasks.filter((value) => tasks.name === value))
+    const foundIndex = tasks.filter((t, index) => t.name !== value)
+    setTasks(foundIndex)
   }
 
   // advance task
@@ -68,9 +67,6 @@ const onAdvance = (task) => {
   }
 }
 
-const findTask = (task) => {
-  
-}
 
   return (
     <>
